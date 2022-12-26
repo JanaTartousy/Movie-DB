@@ -21,3 +21,15 @@ const hours = date.getHours();
 const minutes = date.getMinutes();
 res.status(200).json({ message: `${hours} : ${minutes}` });
 })
+app.get('/hello',(req,res) => {
+const ID= "";
+res.send({status:200, message:"Hello, <ID>"});
+})
+app.get("/search",(req,res)=>{
+    console.log(req.query.s)
+    if(typeof req.query.s =="undefined" || req.query.s === "") 
+    {res.send({status:500, error:true, message:"you have to provide a search"})
+    }else {
+        res.send( {status:200, message:"ok", data:search})
+    }
+})
