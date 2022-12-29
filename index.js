@@ -80,5 +80,7 @@ app.get('/movies/read/id/:ID', (req,res)=>{
         res.send({ status: 200, data: MOVIE });
         return;
         } });
-    res.send({ status: 404, error:true, message: 'the movie ${req.params.ID} does not exist' });
+    res.send({ status: 404, error:true, message: `the movie ${req.params.ID} does not exist` });
   });
+
+    
