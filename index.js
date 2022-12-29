@@ -73,3 +73,12 @@ app.get('/movies/read/by-title', (req,res)=>{
     })
         res.send( {status:200, data:moviesbytitle});
     });
+//read one
+app.get('/movies/read/id/:ID', (req,res)=>{
+    movies.forEach((MOVIE)=>{
+        if(MOVIE.id == req.params.ID){
+        res.send({ status: 200, data: MOVIE });
+        return;
+        } });
+    res.send({ status: 404, error:true, message: 'the movie ${req.params.ID} does not exist' });
+  });
