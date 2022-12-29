@@ -96,4 +96,20 @@ app.get('/movies/add' , (req,res)=>{
       movies.push(MOVIE);
       res.json(movies);
 });
-    
+//delete
+app.get('/movies/delete/:ID', (req,res)=>{
+data  = req.params;
+var movieToDelete = false;
+for (var i = 0; i<movies.length; i++){
+    if(data.ID == movies[i].id){
+        movieToDelete= true;
+        var index= i;}
+} if (movieToDelete){
+movies.splice(index, 1);
+{res.send({status: 200, data: movies})
+}}else {
+    res.send({ status: 404, error:true, message: `the movie ${data.ID} does not exist` });
+   } 
+}) 
+
+  
