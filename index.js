@@ -82,5 +82,18 @@ app.get('/movies/read/id/:ID', (req,res)=>{
         } });
     res.send({ status: 404, error:true, message: `the movie ${req.params.ID} does not exist` });
   });
-
+//create
+app.get('/movies/add' , (req,res)=>{
+    const { title, year, rating } = req.query;
+    if (!title || !year) {
+        return res.json({ status: 403, error: true, message: 'You cannot create a movie without providing a title and a year',
+        });}
+      if (year.length !== 4 || isNaN(year)) {
+        return res.json({ status: 403, error: true, message: 'the Year should be of 4 digit number',
+        });}
+      if (!rating) {rating = 4;}
+      const MOVIE = {title,year,rating,};
+      movies.push(MOVIE);
+      res.json(movies);
+});
     
