@@ -106,10 +106,32 @@ for (var i = 0; i<movies.length; i++){
         var index= i;}
 } if (movieToDelete){
 movies.splice(index, 1);
-{res.send({status: 200, data: movies})
-}}else {
+{res.send({status: 200, data: movies})}
+}else {
     res.send({ status: 404, error:true, message: `the movie ${data.ID} does not exist` });
    } 
 }) 
+//update
+app.get('/movies/update', (req,res)=>{
+data = req.params;
+  Title = req.query.title
+  Year = req.query.year
+  Rating =req.query.rating
+  var New = false;
+  for(var i = 0; i < movies.length; i++){
+    if(data.ID == movies[i].id){
+      New = true;
+      index= i;}
+  }
+  if (New){
+    if(Title) movies[index].title = Title
+    if(Year) movies[index].year = Year
+    if(Rating) movies[index].rating = Rating
+    res.send({status:200, data:movies})
+  }else {
+    res.send({status:404, error:true, message: `the movie ${data.ID} does not exist`});
+  }
 
+  })
+ 
   
