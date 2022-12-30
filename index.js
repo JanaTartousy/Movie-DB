@@ -10,7 +10,7 @@ res.send( 'ok' )
 
 app.listen( port ,
 () => console.log(`Listen is on Port at http://localhost:${ port } Ctrl + C to Stop `) ) 
-
+ 
 //simple API
 app.get('/test',(req,res) => {
 res.status(200).json({ message: "ok" });
@@ -39,7 +39,7 @@ const movies = [
     { title: 'Jaws', year: 1975, rating: 8 },
     { title: 'Avatar', year: 2009, rating: 7.8 },
     { title: 'Brazil', year: 1985, rating: 8 },
-    { title: 'الإرهاب والكباب‎', year: 1992, rating: 6.2 }];
+    { title: 'الإرهاب والكباب‎', year: 1992, rGETating: 6.2 }];
 app.get('/movies/create',(req,res)=>{
     res.status(200).json({message:"done" });
 });
@@ -83,7 +83,7 @@ app.get('/movies/read/id/:ID', (req,res)=>{
     res.send({ status: 404, error:true, message: `the movie ${req.params.ID} does not exist` });
   });
 //create
-app.get('/movies/add' , (req,res)=>{
+app.post('/movies/add' , (req,res)=>{
     const { title, year, rating } = req.query;
     if (!title || !year) {
         return res.json({ status: 403, error: true, message: 'You cannot create a movie without providing a title and a year',
@@ -97,7 +97,7 @@ app.get('/movies/add' , (req,res)=>{
       res.json(movies);
 });
 //delete
-app.get('/movies/delete/:ID', (req,res)=>{
+app.delete('/movies/delete/:ID', (req,res)=>{
 data  = req.params;
 var movieToDelete = false;
 for (var i = 0; i<movies.length; i++){
@@ -112,7 +112,7 @@ movies.splice(index, 1);
    } 
 }) 
 //update
-app.get('/movies/update', (req,res)=>{
+app.put('/movies/update', (req,res)=>{
 data = req.params;
   Title = req.query.title
   Year = req.query.year
@@ -133,5 +133,5 @@ data = req.params;
   }
 
   })
- 
+//using http verbs
   
